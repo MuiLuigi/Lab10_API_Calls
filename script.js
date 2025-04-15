@@ -21,3 +21,30 @@ function displayData(data) {
 
 
 //Task 2
+document.getElementById('button2').addEventListener('click', function() {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts/2', true);
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) { // 4 means the request is complete
+            if (xhr.status === 200) { // 200 means the request was successful
+                const data = JSON.parse(xhr.responseText);
+                console.log(data);
+                displayData(data);
+            } else {
+                console.error('Error fetching data:', xhr.statusText);
+            }
+        }
+    };
+
+    xhr.errorMessage = function() {
+        dispayError('The request failed. Please check the connection.');
+    }
+
+    xhr.send();
+});
+
+function displayData2(data2) {
+    const tableBody2 = document.getElementById('data');
+    tableBody2.innerHTML = 'Data title: ' + data2.title + ' - Data body: ' + data2.body; // Clear previous data
+}
