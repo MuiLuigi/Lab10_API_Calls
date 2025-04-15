@@ -8,6 +8,29 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
+    <h1>Lab 10: API Calls in JavaScript</h1>
+
+    <button>Fetch data</button>
+    <button>Fetch data using XHR</button>
+
+    <div id="data">Here is the fetch data:</div>
+
+    <h2>Data Submission Form</h2>
+    <form id="formRegistration">
+        <label for="name">Please enter your First and Last name: </label>
+        <input type="text" id="name" name="name">
+        <span class="error" id="nameError"></span>
+        <br>
+        <br>
+
+        <label for="email">Please enter your email address: </label>
+        <input type="email" id="email" name="email">
+        <span class="error" id="emailError"></span>
+        <br>
+        <br>
+
+        <button>Send data using POST</button>
+        <button>Send data using PUT</button>
+    </form>
 </body>
 </html>
