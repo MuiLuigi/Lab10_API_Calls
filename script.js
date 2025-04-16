@@ -48,3 +48,43 @@ function displayData2(data2) {
     const tableBody2 = document.getElementById('data');
     tableBody2.innerHTML = 'Data title: ' + data2.title + ' - Data body: ' + data2.body; // Clear previous data
 }
+
+
+//Task 3
+window.onload = function() {
+    document.getElementById('formRegistration').addEventListener('submit', formSubmission)
+}
+
+function formSubmission(s) {
+    s.preventDefault();
+    const dataTitle = document.getElementById('name').value;
+    const dataContent = document.getElementById('username').value;
+
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            title: dataTitle,
+            body: dataContent
+        })
+    }) 
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('POST failed');
+        }
+        return response.json();
+    })
+    .then(responseData => {
+        displayData3(responseData);
+    })
+    .catch(error => {
+        console.error("Error fetching the data", error);
+    })
+}
+
+function displayData3(data3) {
+    const tableBody3 = document.getElementById('data');
+    tableBody3.innerHTML = 'The form has been submitted successfully!' + '\nData title: ' + data3.title + ' - Data body: ' + data3.body + ' - ' + data3.id; // Clear previous data
+}

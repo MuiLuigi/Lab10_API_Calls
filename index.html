@@ -17,20 +17,20 @@
 
     <h2>Data Submission Form</h2>
     <form id="formRegistration">
-        <label for="name">Please enter your First and Last name: </label>
-        <input type="text" id="name" name="name">
+        <label for="name">Please enter the title of your post: </label>
+        <input type="text" id="name" name="name" required>
         <span class="error" id="nameError"></span>
         <br>
         <br>
 
-        <label for="email">Please enter your email address: </label>
-        <input type="email" id="email" name="email">
-        <span class="error" id="emailError"></span>
+        <label for="username">Please write the content of your post: </label>
+        <textarea id="username" placeholder="Content" required></textarea>
+        <span class="error" id="usernameError"></span>
         <br>
         <br>
 
-        <button>Send data using POST</button>
-        <button>Send data using PUT</button>
+        <button type="submit">Send data using POST</button>
+        <button type="submit">Send data using PUT</button>
     </form>
 </body>
 </html>
