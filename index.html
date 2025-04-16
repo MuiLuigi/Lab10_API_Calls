@@ -29,8 +29,23 @@
         <br>
         <br>
 
+        <label for="updates">Post ID:</label>
+        <input type="number" id="updates" required>
+
+        <label for="name2">Please enter the updated title of your post: </label>
+        <input type="text" id="name2" name="name2" required>
+        <span class="error" id="name2Error"></span>
+        <br>
+        <br>
+
+        <label for="username2">Please write the updated content of your post: </label>
+        <textarea id="username2" placeholder="Content2" required></textarea>
+        <span class="error" id="usernameError2"></span>
+        <br>
+        <br>
+
         <button type="submit">Send data using POST</button>
-        <button type="submit">Send data using PUT</button>
+        <button type="button" id="update">Update data using PUT</button>
     </form>
 </body>
 </html>

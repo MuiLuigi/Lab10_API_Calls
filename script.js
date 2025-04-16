@@ -52,7 +52,8 @@ function displayData2(data2) {
 
 //Task 3
 window.onload = function() {
-    document.getElementById('formRegistration').addEventListener('submit', formSubmission)
+    document.getElementById('formRegistration').addEventListener('submit', formSubmission);
+    document.getElementById('update').addEventListener('click', postUpdate);
 }
 
 function formSubmission(s) {
@@ -87,4 +88,43 @@ function formSubmission(s) {
 function displayData3(data3) {
     const tableBody3 = document.getElementById('data');
     tableBody3.innerHTML = 'The form has been submitted successfully!' + '\nData title: ' + data3.title + ' - Data body: ' + data3.body + ' - ' + data3.id; // Clear previous data
+}
+
+
+//Task 4
+function postUpdate() {
+    const updatedTitle = document.getElementById('name2').value;
+    const updatedContent = document.getElementById('username2').value;
+    const id = document.getElementById('updates').value;
+
+    if (!updatedContent || !updatedTitle) {
+        return "Error. Please enter the field";
+    }
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('PUT', `https://jsonplaceholder.typicode.com/posts/${id}`, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) { // 4 means the request is complete
+            if (xhr.status === 200) { // 200 means the request was successful
+                const data = JSON.parse(xhr.responseText);
+                console.log(data);
+                displayData(data);
+            } else {
+                console.error('Error fetching data:', xhr.statusText);
+            }
+        }
+    };
+
+    xhr.onerror = function() {
+        displayError("Network error during request.");
+    }
+
+    const updates = JSON.stringify({
+        title: updatedTitle,
+        body: updatedContent
+    });
+
+    xhr.send(updates);
 }
